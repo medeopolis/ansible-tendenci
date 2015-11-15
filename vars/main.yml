@@ -48,7 +48,6 @@ configure_selinux: false
 # For franklinkim.apt
 apt_packages:
  - git
- - libpq-dev            # postgres bindings
  - python-dev           # for pip to build compiled modules against
  - libjpeg-dev          # for image manipulation
  # - git                  # use currently unknown
@@ -63,3 +62,37 @@ apt_packages:
 # For bennojoy.memcached
 memcached_cache_size: 256       # The cache size in MB
 
+# For ANXS.postgresql
+postgresql_version: 9.4
+postgresql_encoding: 'UTF-8'
+postgresql_locale: 'en_AU.UTF-8'
+
+postgresql_admin_user: "postgres"
+postgresql_default_auth_method: "trust"
+
+# Install contrib
+postgresql_ext_install_contrib: true
+# Install development headers
+postgresql_ext_install_dev_headers: true
+# Install postgis
+postgresql_ext_install_postgis: true
+
+# List of databases to be created (optional)
+postgresql_databases:
+  - name: "{{ postgres_database_name }}"
+    hstore: no         # flag to install the hstore extension on this database (yes/no)
+    uuid_ossp: no      # flag to install the uuid-ossp extension on this database (yes/no)
+    owner: "{{ postgres_connection_user }}"
+
+# List of users to be created (optional)
+postgresql_users:
+  - name: "{{ postgres_connection_user }}"
+    pass: "{{ postgres_connection_pass }}"
+    encrypted: no       # denotes if the password is already encrypted.
+
+# List of user privileges to be applied (optional)
+postgresql_user_privileges:
+  - name: "{{ postgres_connection_user }}"                   # user name
+    db: "{{ postgres_database_name }}"                  # database
+    priv: "ALL"                 # privilege string format: example: INSERT,UPDATE/table:SELECT/anothertable:ALL
+    role_attr_flags: "CREATEDB" # role attribute flags

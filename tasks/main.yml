@@ -1,9 +1,8 @@
 ---
 # tasks file for tendenci
 
-# TODO: fix or replace postgres apt install bit
-- install_postgres.yml
-- configure_postgres.yml
+# new postgres role by ANXS doesn't seem to allow arbitrary extensions yet.
+- configure_postgres_extensions.yml
 
 - install_tendenci.yml
 - update_local_settings_file.yml
