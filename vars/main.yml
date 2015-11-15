@@ -42,6 +42,9 @@ enable_mailserver: false
 tendenci_run_as_user: www-data
 tendenci_run_as_group: www-data
 
+# Only enable if running an enforcing system. 
+configure_selinux: false
+
 # For franklinkim.apt
 apt_packages:
  - git

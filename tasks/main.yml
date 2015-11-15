@@ -13,6 +13,17 @@
 - custom_themes.yml
   when: custom_theme_name
 
+# Trying to use this to skip seinux file entirely. if not it can go in configure_selinux
+- name: Is selinux running
+  command: getenforce
+  register: sestatus
+  changed_when: false
+  ignore_errors: true
+
+- configure_selinux.yml
+  when: sestatus.rc != 0
+  ignore_errors
+
 - configure_init_systems.yml
 
 - configure_nginx.yml

@@ -1,0 +1,19 @@
+
+# This lot is only really useful if you have selnux and its enforcing.
+
+# possibly intereseting http://docs.ansible.com/ansible/selinux_permissive_module.html
+
+
+- name: Enable networking for HTTPDs in SELinux
+  seboolean: name=httpd_can_network_connect state=yes persistent=yes
+
+- name: Enable HTTPD connections to memcache in SELinux
+  seboolean: name=httpd_can_network_memcache state=yes persistent=yes
+
+- name: Enable HTTPD connections to DB in SELinux
+  seboolean: name=httpd_can_network_connect_db state=yes persistent=yes
+
+# maybe what i need?
+# allow_user_postgresql_connect
+# if all else fails postgresql_disable_trans
+
