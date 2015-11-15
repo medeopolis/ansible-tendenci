@@ -1,0 +1,5 @@
+
+# if cusotm theme set TODO
+- name: Set custom theme
+  command: "python manage.py set_theme my-theme-name"
+

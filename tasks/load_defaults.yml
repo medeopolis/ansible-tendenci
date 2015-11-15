@@ -1,0 +1,9 @@
+
+# TODO: wrap these in options so they can be optional
+
+- name: Load optional base defaults
+  command: executable="/usr/bin/python" "manage.py load_base_defaults"
+
+- name: Load optional base defaults
+  command: executable="/usr/bin/python" "manage.py load_npo_defaults"
+

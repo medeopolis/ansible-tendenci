@@ -1,0 +1,22 @@
+# TODO: rename this to 'update_local_settings_file.yml'
+
+- name: Set DB connection user in settings
+  replace: name="{{ website_install_dir }}/conf/local_settings.py"
+    regexp="'<DB_USER>'" replace="'{{ postgres_connection_user }}'"
+
+- name: Set DB connection pass in settings
+  replace: name="{{ website_install_dir }}/conf/local_settings.py"
+    regexp="'<DB_PASS>'" replace="'{{ postgres_connection_pass }}'"
+
+- name: Set DB name in settings
+  replace: name="{{ website_install_dir }}/conf/local_settings.py"
+    regexp="'<DB_NAME>'" replace="'{{ postgres_database_name }}'"
+
+- name: Set Secret key
+  replace: name="{{ website_install_dir }}/conf/local_settings.py"
+    regexp="'your_unique_secret_key_Qoh222VG9pq8P9hOapH'" replace="'{{ site_secret_key }}'"
+
+- name: Set Site settings key
+  replace: name="{{ website_install_dir }}/conf/local_settings.py"
+    regexp="'tendenci_site_key_bdc635k2-283d-4a2c-a477-339ea866'" replace="'{{ site_settings_key }}'"
+

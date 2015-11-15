@@ -1,0 +1,6 @@
+
+if ???? releases with only 9.3???:
+    sudo apt-get install postgresql postgresql-contrib-9.3 postgresql-9.3-postgis-2.1
+
+else:
+    same but with 9.4 in name

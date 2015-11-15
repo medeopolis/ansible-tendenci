@@ -1,0 +1,13 @@
+
+To create an adminstrator login, run the following command and fill in the prompts:
+# TODO: needs to be in virtualenv
+# TODO: using django-admin direclty instead of manage.py should do it
+
+# TODO: create superuser 
+- name: Create site superuser
+  command: "{{ website_install_dir }}/manage.py createsuperuser --username={{ superuser_username }} --email={{ superuser_email }}"
+    executable="/usr/bin/python"
+
+- name: Reminder!
+  debug: msg="Remember to run django-admin and set a password for {{ superuser_username }}"
+

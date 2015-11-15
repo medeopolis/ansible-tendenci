@@ -1,2 +1,41 @@
 ---
 # vars file for tendenci
+
+# use this as an identier wherever needed; not used yet.
+install_name: 'tendenci'
+
+apt_packages:
+ - git
+ - libpq-dev            # postgres bindings
+ - python-dev           # for pip to build compiled modules against
+ - libjpeg-dev          # for image manipulation
+ # - git                  # use currently unknown
+ # FIXME: python-pip is only from 2.7.9 up, this might need to be if/elsed
+ - python-pip           # manage install process for python modules
+ - python-virtualenv    # create virtual environment for python packages to be installed in
+ - python-psycopg2      # ansible needs this for the postgresql_* modules
+ - build-essential      # provide packages needed for compilation (used by pip)
+ - memcached            # in memory cache to boost performance
+ - libmemcached-dev     # enable linking against memcache for pip
+ - nginx                # front end web server
+
+
+postgres_connection_user: "tendenci_user"
+# Password will be encrypted by postgresql during user creation
+postgres_connection_pass: "" # TODO: auto generate one
+postgres_database_name:   "tendenci_db"
+
+virtualenv_install_dir: '/srv/tendenci/virtualenv'
+website_install_dir: '/srv/tendenci/website'
+
+site_secret_key: '' # TODO: autogenerate 32 char long
+site_settings_key: '' # TODO: autogenerate 32 char long
+
+superuser_username: 'admin'
+superuser_email: 'admin@example.com'
+
+# DNS name of server
+server_visible_name: localhost
+server_visible_port: 80
+
+tendenci_bind_port: 8080

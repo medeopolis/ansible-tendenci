@@ -1,0 +1,9 @@
+
+# FIXME: need to be run in virtualenv
+
+- name: Run migrate_initials
+  command: "{{ website_install_dir }}/migrate_initials.sh"
+
+- name: Run deploy.py
+  command: "{{ website_install_dir }}/deploy.py" executable="/usr/bin/python"
+

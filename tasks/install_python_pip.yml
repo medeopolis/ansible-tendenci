@@ -1,0 +1,11 @@
+
+if older than 2.7.9:
+If your system is pre Python 2.7.9 you will need to install pip from the Internet.
+The following command will download and install pip and its dependencies for you.
+::
+
+    sudo apt-get install build-essential
+    wget https://bootstrap.pypa.io/get-pip.py -O - | sudo python
+
+else:
+apt install python-pip

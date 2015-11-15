@@ -1,0 +1,15 @@
+
+# TODO: if init == upstart
+- name: Install Upstart configuration
+  template: src="upstart-config.tmpl" dest="/etc/init/tendenci.conf"
+
+- name: Install Systemd configuration
+  template: src="systemd-config.tmpl" dest="/etc/systemd/system/tendenci.service"
+
+
+- name: Enable tendenci service
+  service: name=tendenci enabled=yes
+
+- name: Start tendenci service
+  service: name=tendenci state=started
+

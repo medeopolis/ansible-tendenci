@@ -1,0 +1,9 @@
+# TODO
+Setup Mail
+----------
+
+For a mail server, install postfix. This package has 3 steps that you must respond to in order to complete the installation. If the server is alreadly configured with a domain name, enter that domain in the prompts. Otherwise, leave the defaults in place. To install the package, run this command:
+::
+
+    apt-get install postfix
+
