@@ -12,20 +12,6 @@ postgres_connection_user: "{{ install_name }}_user"
 postgres_connection_pass: "" # TODO: auto generate one
 postgres_database_name:   "{{ install_name }}_db"
 
-apt_packages:
- - git
- - libpq-dev            # postgres bindings
- - python-dev           # for pip to build compiled modules against
- - libjpeg-dev          # for image manipulation
- # - git                  # use currently unknown
- - python-pip           # manage install process for python modules
- - python-virtualenv    # create virtual environment for python packages to be installed in
- - python-psycopg2      # ansible needs this for the postgresql_* modules
- - build-essential      # provide packages needed for compilation (used by pip)
- - memcached            # in memory cache to boost performance
- - libmemcached-dev     # enable linking against memcache for pip
- - nginx                # front end web server
-
 
 # Use upstream defaults, people should override it themselves
 site_secret_key: ""
@@ -52,4 +38,22 @@ load_base_defaults: false
 load_npo_defaults: false
 
 enable_mailserver: false
+
+# For franklinkim.apt
+apt_packages:
+ - git
+ - libpq-dev            # postgres bindings
+ - python-dev           # for pip to build compiled modules against
+ - libjpeg-dev          # for image manipulation
+ # - git                  # use currently unknown
+ - python-pip           # manage install process for python modules
+ - python-virtualenv    # create virtual environment for python packages to be installed in
+ - python-psycopg2      # ansible needs this for the postgresql_* modules
+ - build-essential      # provide packages needed for compilation (used by pip)
+ - memcached            # in memory cache to boost performance
+ - libmemcached-dev     # enable linking against memcache for pip
+ - nginx                # front end web server
+
+# For bennojoy.memcached
+memcached_cache_size: 256       # The cache size in MB
 

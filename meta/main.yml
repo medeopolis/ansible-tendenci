@@ -125,4 +125,5 @@ galaxy_info:
 dependencies: 
   # List your role dependencies here, one per line.
   - franklinkim.apt
+  - bennojoy.memcached
   

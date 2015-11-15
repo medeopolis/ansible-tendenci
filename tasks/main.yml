@@ -13,9 +13,6 @@
 - custom_themes.yml
   when: custom_theme_name
 
-# FIXME: this is still broken
-- configure_memcached.yml
-
 - configure_init_systems.yml
 
 - configure_nginx.yml
