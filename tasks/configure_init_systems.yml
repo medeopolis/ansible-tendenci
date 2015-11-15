@@ -1,15 +1,25 @@
 
-# TODO: if init == upstart
+- name: Check if Upstarts configuration directory exists
+  stat: path="/etc/init/"
+  register: upstart_existance
+
 - name: Install Upstart configuration
-  template: src="upstart-config.tmpl" dest="/etc/init/tendenci.conf"
+  template: src="upstart-config.tmpl" dest="/etc/init/{{ install_name }}}.conf"
+  when: upstart_existance.stat.exists = True
+
+
+- name: Check if Systemd configuration directory exists
+  stat: path="/etc/systemd/system/"
+  register: systemd_existance
 
 - name: Install Systemd configuration
-  template: src="systemd-config.tmpl" dest="/etc/systemd/system/tendenci.service"
+  template: src="systemd-config.tmpl" dest="/etc/systemd/system/{{ install_name }}.service"
+  when: systemd_existance.stat.exists = True
 
 
-- name: Enable tendenci service
-  service: name=tendenci enabled=yes
+- name: Enable Tendenci service
+  service: name="{{ install_name }}" enabled=yes
 
-- name: Start tendenci service
-  service: name=tendenci state=started
+- name: Start Tendenci service
+  service: name="{{ install_name }}" state=started
 

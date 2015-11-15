@@ -1,10 +1,10 @@
-description "Tendenci Upstart Script"
+description "Start Tendenci instance \"{{ install_name }}\""
 start on runlevel [2345]
 stop on runlevel [06]
 respawn
 respawn limit 10 5
 script
     cd {{ website_install_dir }}
-    exec gunicorn -w 2 -b 127.0.0.1:8000 conf.wsgi --max-requests 350
+    exec gunicorn -w 2 -b {{ tendenci_bind_address }}:{{ tendenci_bind_port }}} conf.wsgi --max-requests 350
 end script
 

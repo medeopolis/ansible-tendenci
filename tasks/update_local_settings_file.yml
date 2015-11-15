@@ -1,4 +1,5 @@
-# TODO: rename this to 'update_local_settings_file.yml'
+
+# FIXME: add a check here to make sure connection password, secret key and site key have been updated.
 
 - name: Set DB connection user in settings
   replace: name="{{ website_install_dir }}/conf/local_settings.py"

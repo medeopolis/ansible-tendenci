@@ -1,8 +1,16 @@
 ---
 # vars file for tendenci
 
-# use this as an identier wherever needed; not used yet.
-install_name: 'tendenci'
+# Name of this tendenci install
+install_name: "tendenci"
+# These paths use it for cooinstallability but you can choose different paths.
+virtualenv_install_dir: "/srv/{{ install_name }}/environment"
+website_install_dir: "/srv/{{ install_name }}/website"
+
+postgres_connection_user: "{{ install_name }}_user"
+# Password will be encrypted by postgresql during user creation
+postgres_connection_pass: "" # TODO: auto generate one
+postgres_database_name:   "{{ install_name }}_db"
 
 apt_packages:
  - git
@@ -10,7 +18,6 @@ apt_packages:
  - python-dev           # for pip to build compiled modules against
  - libjpeg-dev          # for image manipulation
  # - git                  # use currently unknown
- # FIXME: python-pip is only from 2.7.9 up, this might need to be if/elsed
  - python-pip           # manage install process for python modules
  - python-virtualenv    # create virtual environment for python packages to be installed in
  - python-psycopg2      # ansible needs this for the postgresql_* modules
@@ -20,22 +27,29 @@ apt_packages:
  - nginx                # front end web server
 
 
-postgres_connection_user: "tendenci_user"
-# Password will be encrypted by postgresql during user creation
-postgres_connection_pass: "" # TODO: auto generate one
-postgres_database_name:   "tendenci_db"
+# Use upstream defaults, people should override it themselves
+site_secret_key: ""
+site_settings_key: ""
 
-virtualenv_install_dir: '/srv/tendenci/virtualenv'
-website_install_dir: '/srv/tendenci/website'
+superuser_username: "admin"
+# As with keys, user should override.
+# superuser_password: "" not used yet
+superuser_email: "admin@example.com"
 
-site_secret_key: '' # TODO: autogenerate 32 char long
-site_settings_key: '' # TODO: autogenerate 32 char long
-
-superuser_username: 'admin'
-superuser_email: 'admin@example.com'
-
+# Set false to prevent all nginx configuration (eg for custom/external configuration)
+perform_nginx_configuration: true
 # DNS name of server
 server_visible_name: localhost
 server_visible_port: 80
 
+tendenci_bind_address: 127.0.0.1
 tendenci_bind_port: 8080
+
+custom_theme_name: ""
+
+# Pre populate the site with data (eg for demo purposes)
+load_base_defaults: false
+load_npo_defaults: false
+
+enable_mailserver: false
+

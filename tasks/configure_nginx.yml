@@ -1,10 +1,10 @@
 
 - name: Install new Nginx configuration
-  template: src="nginx-config.tmpl" dest="/etc/nginx/sites-available/tendenci"
+  template: src="nginx-config.tmpl" dest="/etc/nginx/sites-available/{{ install_name }}"
 
 - name: Enable new Nginx configuration
-  command: creates="/etc/nginx/sites-enabled/tendenci"
-    "ln -s /etc/nginx/sites-available/tendenci /etc/nginx/sites-enabled/tendenci"
+  command: creates="/etc/nginx/sites-enabled/{{ install_name }}"
+    "ln -s /etc/nginx/sites-available/{{ install_name }} /etc/nginx/sites-enabled/{{ install_name }}"
 
 - name: Delete placeholder Nginx configuration
   command: removes="/etc/nginx/sites-enabled/default"
@@ -12,4 +12,4 @@
 
 # TODO: optionally wrap this in a check so it only runs if something changed
 - name: Reload Nginx so config takes effect
-  service: name=tendenci state=reloaded
+  service: name=nginx state=reloaded

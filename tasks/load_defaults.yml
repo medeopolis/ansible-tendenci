@@ -1,9 +1,13 @@
 
-# TODO: wrap these in options so they can be optional
-
 - name: Load optional base defaults
-  command: executable="/usr/bin/python" "manage.py load_base_defaults"
+  when: load_base_defaults=True
+  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+    command="load_base_defaults"
+  # command: executable="/usr/bin/python" "manage.py load_base_defaults"
 
-- name: Load optional base defaults
-  command: executable="/usr/bin/python" "manage.py load_npo_defaults"
+- name: Load optional NPO defaults
+  when: load_npo_defaults=True
+  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+    command="load_npo_defaults"
+  # command: executable="/usr/bin/python" "manage.py load_npo_defaults"
 

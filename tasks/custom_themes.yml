@@ -1,0 +1,10 @@
+
+# Copy the directory containing the theme to the remote servers themes directory
+- name: Copy theme to server
+  copy: dest="{{ website_install_dir }}/themes/" src="{{ custom_theme_name }}"
+
+- name: Enable custom theme
+  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+    command="set_theme {{ custom_theme_name }}"
+    # command: "python manage.py set_theme {{ custom_theme_name }}"
+

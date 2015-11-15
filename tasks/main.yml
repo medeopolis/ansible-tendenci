@@ -1,3 +1,27 @@
 ---
 # tasks file for tendenci
 
+# TODO: fix or replace postgres apt install bit
+- install_postgres.yml
+- configure_postgres.yml
+
+- install_tendenci.yml
+- update_local_settings_file.yml
+- run_deploy.yml
+- create_superuser.yml
+- load_defaults.yml
+- custom_themes.yml
+  when: custom_theme_name
+
+# FIXME: this is still broken
+- configure_memcached.yml
+
+- configure_init_systems.yml
+
+- configure_nginx.yml
+  when: perform_nginx_configuration
+
+# FIXME: this is still broken
+- configure_mail.yml
+  when: enable_mailserver
+
