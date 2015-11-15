@@ -12,8 +12,8 @@ Type=forking
 KillMode=process
 Restart=restart-always
 ExecStart={{ virtualenv_install_dir }}/bin/gunicorn              \
-          --group www-data                             \
-          --user www-data                              \
+          --group {{ tendenci_run_as_group }}                             \
+          --user {{ tendenci_run_as_user }}                              \
           --workers 4                                  \
           --bind={{ tendenci_bind_address }}:{{ tendenci_bind_port }}                        \
           --pid=/run/{{ install_name }}.pid                \

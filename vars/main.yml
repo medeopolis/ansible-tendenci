@@ -39,6 +39,9 @@ load_npo_defaults: false
 
 enable_mailserver: false
 
+tendenci_run_as_user: www-data
+tendenci_run_as_group: www-data
+
 # For franklinkim.apt
 apt_packages:
  - git

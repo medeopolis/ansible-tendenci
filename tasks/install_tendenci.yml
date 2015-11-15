@@ -12,3 +12,7 @@
 - name: Install Tendenci dependencies
   pip: state=present virtualenv="{{ virtualenv_install_dir }}"
     requirements="{{ website_install_dir }}"/requirements/dev.txt
+
+- name: Changing website to be Read/Write by {{ tendenci_run_as_user }} and {{ tendenci_run_as_group }}
+  command: "chown -R www-data:www-data {{ website_install_dir }}"
+

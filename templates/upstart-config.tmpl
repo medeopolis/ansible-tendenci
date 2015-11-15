@@ -1,4 +1,6 @@
 description "Start Tendenci instance \"{{ install_name }}\""
+setuid {{ tendenci_run_as_user }}
+setgid {{ tendenci_run_as_group }}
 start on runlevel [2345]
 stop on runlevel [06]
 respawn
