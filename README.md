@@ -8,15 +8,42 @@ Requirements
 
 Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
+
 Role Variables
 --------------
 
 A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
+`install_name must not contain spaces as its used in various places for configuration and in filesystem paths.
+
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role tries to use existing roles to perform generic work wherever
+possible. To that end the following roles are used; their defaults (where set)
+are in vars/main.yml but they can be configured per their upstream
+documentation.
+
+franklinkim.apt
+===============
+This is used to install packages and will need to be used.
+variables used:
+
+bennojoy.memcached
+===================
+Installs and configures memcached. This could be done manually so can be regarded as optional if unavailable.
+variables used:
+
+ANXS.postgresql
+===============
+Used to perform all database configuration; this role is required.
+variables used:
+
+tersmitten.postfix
+==================
+Perform install and configuration of Postfix. Strictly speaking this is optional.
+variables used:
+
 
 Example Playbook
 ----------------
@@ -25,7 +52,11 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+        - role: goetzk.tendenci
+      vars:
+        - install_name: 'goetzk_tendenci'
+        - site_secret_key: 'my 32 character string here asdf234'
+        - site_settings_key: 'my 32 character string here asdf234'
 
 License
 -------
