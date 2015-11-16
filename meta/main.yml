@@ -127,4 +127,5 @@ dependencies:
   - franklinkim.apt
   - bennojoy.memcached
   - ANXS.postgresql
-  
+  - tersmitten.postfix
+

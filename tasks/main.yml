@@ -28,7 +28,3 @@
 - configure_nginx.yml
   when: perform_nginx_configuration
 
-# FIXME: this is still broken
-- configure_mail.yml
-  when: enable_mailserver
-
