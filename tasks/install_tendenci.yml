@@ -1,18 +1,18 @@
 
 - name: Install Django
-  pip: state=present virtualenv="{{ virtualenv_install_dir }}"
-    name="Django" version=">=1.8,<1.9"
+  pip: state=present virtualenv={{ virtualenv_install_dir }}
+    name=Django version=>=1.8,<1.9
 
 # Trying this http://stackoverflow.com/a/22188606; may have to go the wrapper method if it fails
 # http://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/ confirms behaviour
 - name: Create base website
-  command: "{{virtualenv_install_dir}}/bin/django-admin.py startproject --template=https://github.com/tendenci/tendenci-project-template/archive/master.zip {{ website_install_dir }}"
-    creates="{{ website_install_dir }}"
+  command: "{{ virtualenv_install_dir }}/bin/django-admin.py startproject --template=https://github.com/tendenci/tendenci-project-template/archive/master.zip {{ website_install_dir }}
+    creates={{ website_install_dir }}"
 
 - name: Install Tendenci dependencies
-  pip: state=present virtualenv="{{ virtualenv_install_dir }}"
-    requirements="{{ website_install_dir }}"/requirements/dev.txt
+  pip: state=present virtualenv={{ virtualenv_install_dir }}
+    requirements={{ website_install_dir }}/requirements/dev.txt
 
 - name: Changing website to be Read/Write by {{ tendenci_run_as_user }} and {{ tendenci_run_as_group }}
-  command: "chown -R www-data:www-data {{ website_install_dir }}"
+  command: chown -R www-data:www-data {{ website_install_dir }}
 
