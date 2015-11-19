@@ -7,22 +7,11 @@
 - include: install_tendenci.yml
 - include: update_local_settings_file.yml
 - include: run_deploy.yml
-- include: create_superuser.yml
+# - include: create_superuser.yml
 - include: load_defaults.yml
 
 - include: custom_themes.yml
-  when: custom_theme_name
-
-# Trying to use this to skip seinux file entirely. if not it can go in configure_selinux
-- name: Is selinux running
-  command: getenforce
-  register: sestatus
-  changed_when: false
-  ignore_errors: true
-
-- include: configure_selinux.yml
-  when: sestatus.rc != 0
-  ignore_errors: true
+  when: custom_theme_name != ''
 
 - include: configure_init_systems.yml
 

@@ -1,7 +1,7 @@
 
 - name: Install Django
   pip: state=present virtualenv={{ virtualenv_install_dir }}
-    name=Django version=>=1.8,<1.9
+    name=Django version="1.8.6" # version=">=1.8,<1.9"
 
 # Trying this http://stackoverflow.com/a/22188606; may have to go the wrapper method if it fails
 # http://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/ confirms behaviour

@@ -9,7 +9,7 @@ website_install_dir: "/srv/{{ install_name }}/website"
 
 postgres_connection_user: "{{ install_name }}_user"
 # Password will be encrypted by postgresql during user creation
-postgres_connection_pass: "" # TODO: auto generate one
+postgres_connection_pass: "Good strong password.... don't forget."
 postgres_database_name:   "{{ install_name }}_db"
 
 
@@ -53,21 +53,30 @@ apt_packages:
  # - git                  # use currently unknown
  - python-pip           # manage install process for python modules
  - python-virtualenv    # create virtual environment for python packages to be installed in
- - python-psycopg2      # ansible needs this for the postgresql_* modules
  - build-essential      # provide packages needed for compilation (used by pip)
- - memcached            # in memory cache to boost performance
  - libmemcached-dev     # enable linking against memcache for pip
  - nginx                # front end web server
 
 # For bennojoy.memcached
+# pulls in memcache and python-selinux packages
 memcached_cache_size: 256       # The cache size in MB
+memcached_listen_address: 127.0.0.1 # IP to listen on
 
 # For ANXS.postgresql
+# pulls in python-psycopg2, python-pycurl,locales, libgeos-c1 and postgres packages
+# installs packages from postgres.org; may or may not be desirable. can probably fudge it back to debian repos.
+
 postgresql_version: 9.4
 postgresql_encoding: 'UTF-8'
 postgresql_locale: 'en_AU.UTF-8'
+# These lc_* need to be set too, bug filed upstream https://github.com/ANXS/postgresql/issues/110
+postgresql_lc_messages: 'en_AU.UTF-8'
+postgresql_lc_monetary: 'en_AU.UTF-8'
+postgresql_lc_numeric: 'en_AU.UTF-8'
+postgresql_lc_time: 'en_AU.UTF-8'
 
 postgresql_admin_user: "postgres"
+# TODO decide this
 postgresql_default_auth_method: "trust"
 
 # Install contrib
