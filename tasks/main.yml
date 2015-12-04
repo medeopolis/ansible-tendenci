@@ -7,7 +7,7 @@
 - include: install_tendenci.yml
 - include: update_local_settings_file.yml
 - include: run_deploy.yml
-# - include: create_superuser.yml
+- include: create_superuser.yml
 - include: load_defaults.yml
 
 - include: custom_themes.yml

@@ -1,27 +1,5 @@
 
-# lift user check from here? https://github.com/morninj/django-docker/blob/3e38dc686388abe2be94dc3666f0957af6bf57c5/initialize.sh#L29
-# do it in two parts,check user exists and creae if false.
-
-# Can't use, no manage.py yet?
-# - name: Check if superuser exists
-#   shell: echo "import os; from django.contrib.auth.models import User; print 'Root user already exists' if User.objects.filter(username={{ superuser_username }})"  | python {{ website_install_dir }}/manage.py shell
-#   register: superuser_check
-#      echo "import os; from django.contrib.auth.models import User; print 'Root user already exists' if User.objects.filter(username={{ superuser_username }}) else User.objects.create_superuser({{ superuser_username }}, {{ superuser_email }}, {{ superuser_password }})" | python /code/django_docker/manage.py shell
-
-
-- name: Create site superuser
-  when: superuser_check.rc != 0
-  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
-    command="createsuperuser --noinput --username={{ superuser_username }} --email={{ superuser_email }}"
-  # command: "{{ website_install_dir }}/manage.py createsuperuser --username={{ superuser_username }} --email={{ superuser_email }}"
-    # executable="/usr/bin/python"
-
-- name: Reminder!
-  debug: msg="Remember to run django-admin and set a password for {{ superuser_username }}"
-
-# FIXME: add a check for superuser pass. if its default (empty) abort.
-
-# Looks like setting the password will need a script to be created and deleted :\
-# https://docs.djangoproject.com/en/dev/topics/auth/default/#changing-passwords
-# ... although perhaps I can use command to run it as a one liner
+# How about this from http://source.mihelac.org/2009/10/23/django-avoiding-typing-password-for-superuser/#comment-2269267402
+- name: Create site superuser 
+  shell: echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('{{ superuser_username }}', '{{ superuser_email }}', '{{ superuser_password }}') " | {{ virtualenv_install_dir }}/bin/python {{ website_install_dir }}/manage.py shell
 

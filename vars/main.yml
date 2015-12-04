@@ -18,9 +18,9 @@ site_secret_key: ""
 site_settings_key: ""
 
 superuser_username: "admin"
-# As with keys, user should override.
-# superuser_password: "" not used yet
 superuser_email: "admin@example.com"
+# As with keys, user should override.
+superuser_password: "admin"
 
 # Set false to prevent all nginx configuration (eg for custom/external configuration)
 perform_nginx_configuration: true
