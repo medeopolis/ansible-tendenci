@@ -1,2 +1,7 @@
 ---
 # handlers file for tendenci
+
+# TODO: optionally wrap this in a check so it only runs if something changed
+- name: Reload Nginx so config takes effect
+  service: name=nginx state=reloaded
+

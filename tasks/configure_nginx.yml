@@ -10,6 +10,3 @@
   command: removes="/etc/nginx/sites-enabled/default"
     rm /etc/nginx/sites-enabled/default
 
-# TODO: optionally wrap this in a check so it only runs if something changed
-- name: Reload Nginx so config takes effect
-  service: name=nginx state=reloaded
