@@ -15,9 +15,9 @@
 
 - name: Set Secret key
   replace: name="{{ website_install_dir }}/conf/local_settings.py"
-    regexp="'your_unique_secret_key_Qoh222VG9pq8P9hOapH'" replace="'{{ site_secret_key }}'"
+    regexp="SECRET_KEY=.*" replace="SECRET_KEY='{{ site_secret_key }}'"
 
 - name: Set Site settings key
   replace: name="{{ website_install_dir }}/conf/local_settings.py"
-    regexp="'tendenci_site_key_bdc635k2-283d-4a2c-a477-339ea866'" replace="'{{ site_settings_key }}'"
+    regexp="SITE_SETTINGS_KEY=.*" replace="SITE_SETTINGS_KEY='{{ site_settings_key }}'"
 

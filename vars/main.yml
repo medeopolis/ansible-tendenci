@@ -9,13 +9,12 @@ website_install_dir: "/srv/{{ install_name }}/website"
 
 postgres_connection_user: "{{ install_name }}_user"
 # Password will be encrypted by postgresql during user creation
-postgres_connection_pass: "Good strong password.... don't forget."
+postgres_connection_pass: "Good strong password.... dont forget."
 postgres_database_name:   "{{ install_name }}_db"
 
-
 # Use upstream defaults, people should override it themselves
-site_secret_key: ""
-site_settings_key: ""
+site_secret_key: "your_unique_secret_key_Qoh222VG9pq8P9hOapH"
+site_settings_key: "tendenci_site_key_bdc635k2-283d-4a2c-a477-339ea866"
 
 superuser_username: "admin"
 superuser_email: "admin@example.com"
@@ -56,6 +55,7 @@ apt_packages:
  - build-essential      # provide packages needed for compilation (used by pip)
  - libmemcached-dev     # enable linking against memcache for pip
  - nginx                # front end web server
+ - sudo                 # Needed by ANX.postgresql.
 
 # For bennojoy.memcached
 # pulls in memcache and python-selinux packages
