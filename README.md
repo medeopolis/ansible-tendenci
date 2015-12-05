@@ -16,6 +16,11 @@ A description of the settable variables for this role should go here, including 
 
 `install_name must not contain spaces as its used in various places for configuration and in filesystem paths.
 
+
+Other Configuration
+-------------------
+To push out an updated admin password remove the file at {{ website_install_dir }}/.created_superuser_{{ superuser_username }} . While the file exists that users password will remain unchanged by ansible.
+
 Dependencies
 ------------
 
