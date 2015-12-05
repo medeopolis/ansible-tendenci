@@ -2,7 +2,7 @@
 # FIXME: Ugly hack alert! https://github.com/tendenci/tendenci/issues/465#issuecomment-161902750
 - name: Work around Tendenci bug 465 (South migrations component)
   command: "mv {{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations/ {{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak
-    creates={{ virtualenv_install_dir }}/environment/lib/python2.7/site-packages/djcelery/migrations.bak"
+    creates={{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak"
 
 # FIXME: need to be run in virtualenv if its going to be enabled.
 # - name: Run migrate_initials
