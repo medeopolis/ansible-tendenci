@@ -1,4 +1,7 @@
 
+# This is a work around because the role doesn't currently support arbitrary
+# extensions. This should be resolved soonish, a pull request is available.
+# https://github.com/ANXS/postgresql/pull/96
 - name: Enable extensions
   postgresql_ext: db="{{ postgres_database_name }}" name="{{ item }}" state=present
   with_items:
