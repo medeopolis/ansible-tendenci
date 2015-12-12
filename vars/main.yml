@@ -76,7 +76,6 @@ postgresql_lc_numeric: 'en_AU.UTF-8'
 postgresql_lc_time: 'en_AU.UTF-8'
 
 postgresql_admin_user: "postgres"
-# TODO decide this
 postgresql_default_auth_method: "trust"
 
 # Install contrib
