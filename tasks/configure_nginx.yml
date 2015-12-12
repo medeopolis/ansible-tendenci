@@ -1,12 +1,18 @@
 
 - name: Install new Nginx configuration
   template: src="nginx-config.tmpl" dest="/etc/nginx/sites-available/{{ install_name }}"
+  notify:
+    - Reload Nginx
 
 - name: Enable new Nginx configuration
   command: creates="/etc/nginx/sites-enabled/{{ install_name }}"
     ln -s /etc/nginx/sites-available/{{ install_name }} /etc/nginx/sites-enabled/{{ install_name }}
+  notify:
+    - Reload Nginx
 
 - name: Delete placeholder Nginx configuration
   command: removes="/etc/nginx/sites-enabled/default"
     rm /etc/nginx/sites-enabled/default
+  notify:
+    - Reload Nginx
 
