@@ -1,18 +1,10 @@
 
-# FIXME: Ugly hack alert! https://github.com/tendenci/tendenci/issues/465#issuecomment-161902750
 - name: Work around Tendenci bug 465 (South migrations component)
   command: "mv {{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations/ {{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak
     creates={{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak"
 
-# FIXME: need to be run in virtualenv if its going to be enabled.
-# - name: Run migrate_initials
-#   command: "{{ website_install_dir }}/migrate_initials.sh"
-
 # The following entries (all of them) are the contents of deploy.py. They're
-# being run manually so we can use django_manage instead of this code here.
-# - name: Run deploy.py
-#   command: "{{ website_install_dir }}/deploy.py" executable="/usr/bin/python"
-
+# being run manually so we can use django_manage and its virtualenv support.
 - name: Run migrations
   django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
     command="migrate --noinput"
