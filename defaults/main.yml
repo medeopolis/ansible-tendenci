@@ -3,21 +3,21 @@
 
 # Tendenci roles at the top, third party below.
 ######################################################
-# Name of this tendenci install
+# Name of this tendenci install, used in filesystem paths and postgresql table names
 tendenci_install_name: "tendenci"
-# These paths use it for cooinstallability but you can choose different paths.
+# For example these paths use it for cooinstallability but you can choose different paths.
 tendenci_virtualenv_install_dir: "/srv/{{ tendenci_install_name }}/environment"
 tendenci_website_install_dir: "/srv/{{ tendenci_install_name }}/website"
 
-postgres_connection_user: "{{ tendenci_install_name }}_user"
 # Password will be encrypted by postgresql during user creation
 tendenci_postgres_connection_pass: "Good strong password.... dont forget."
 tendenci_postgres_database_name:   "{{ tendenci_install_name }}_db"
 
-# Use upstream defaults, people should override it themselves
+# These are upstream default values, make sure you change them!
 tendenci_site_secret_key: "your_unique_secret_key_Qoh222VG9pq8P9hOapH"
 tendenci_site_settings_key: "tendenci_site_key_bdc635k2-283d-4a2c-a477-339ea866"
 
+# Details of the first administrator/superuser account
 tendenci_site_administrator_username: "admin"
 tendenci_site_administrator_email: "admin@example.com"
 # As with keys, user should override.
@@ -29,15 +29,19 @@ tendenci_perform_nginx_configuration: true
 tendenci_server_visible_name: localhost
 tendenci_server_visible_port: 80
 
+# Where django will bind to, note that this is an internal address and
+# users see the _server_visible_* values above.
 tendenci_bind_address: 127.0.0.1
 tendenci_bind_port: 8080
 
+# If you have a custom theme, put its name here
 tendenci_custom_theme_name: ""
 
 # Pre populate the site with data (eg for demo purposes)
 tendenci_load_base_defaults: false
 tendenci_load_npo_defaults: false
 
+# User and group for the daemons to run as
 tendenci_run_as_user: www-data
 tendenci_run_as_group: www-data
 
@@ -80,6 +84,9 @@ postgresql_lc_time: 'en_AU.UTF-8'
 
 postgresql_admin_user: "postgres"
 postgresql_default_auth_method: "trust"
+
+# Who will the new DBs use to authenticate to postgresql as?
+postgres_connection_user: "{{ tendenci_install_name }}_user"
 
 # Install contrib
 postgresql_ext_install_contrib: true
