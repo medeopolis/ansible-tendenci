@@ -38,8 +38,6 @@ tendenci_custom_theme_name: ""
 tendenci_load_base_defaults: false
 tendenci_load_npo_defaults: false
 
-tendenci_enable_mailserver: false
-
 tendenci_run_as_user: www-data
 tendenci_run_as_group: www-data
 
@@ -108,11 +106,5 @@ postgresql_user_privileges:
     priv: "ALL"
     role_attr_flags: "CREATEDB"
 
-# For tersmitten.postfix
-postfix_aliases:
-  - { user: root, alias: you@example.org }
-  - { user: webmaster, alias: you@example.org }
-  - { user: webmaster, alias: you@example.org }
-postfix_relayhost: mail.example.org
 ######################################################
 

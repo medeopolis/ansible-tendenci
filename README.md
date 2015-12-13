@@ -46,12 +46,6 @@ ANXS.postgresql
 Used to perform all database configuration; this role is required.
 variables used:
 
-tersmitten.postfix
-==================
-Perform install and configuration of Postfix. Strictly speaking this is optional.
-variables used:
-
-
 Example Playbook
 ----------------
 
