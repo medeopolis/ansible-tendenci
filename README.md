@@ -3,6 +3,8 @@ Tendenci
 
 Automate installation of Tendenci Association Management System
 
+This has been tested on Debian 8 and Ubuntu 14.04 but I suspect would work on other releases too.
+
 Requirements
 ------------
 
