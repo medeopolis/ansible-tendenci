@@ -43,8 +43,6 @@ tendenci_enable_mailserver: false
 tendenci_run_as_user: www-data
 tendenci_run_as_group: www-data
 
-# Only enable if running an enforcing system. 
-tendenci_configure_selinux: false
 ######################################################
 
 
