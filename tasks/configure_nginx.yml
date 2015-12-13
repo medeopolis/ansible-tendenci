@@ -1,12 +1,12 @@
 
 - name: Install new Nginx configuration
-  template: src="nginx-config.tmpl" dest="/etc/nginx/sites-available/{{ install_name }}"
+  template: src="nginx-config.tmpl" dest="/etc/nginx/sites-available/{{ tendenci_install_name }}"
   notify:
     - Reload Nginx
 
 - name: Enable new Nginx configuration
-  command: creates="/etc/nginx/sites-enabled/{{ install_name }}"
-    ln -s /etc/nginx/sites-available/{{ install_name }} /etc/nginx/sites-enabled/{{ install_name }}
+  command: creates="/etc/nginx/sites-enabled/{{ tendenci_install_name }}"
+    ln -s /etc/nginx/sites-available/{{ tendenci_install_name }} /etc/nginx/sites-enabled/{{ tendenci_install_name }}
   notify:
     - Reload Nginx
 

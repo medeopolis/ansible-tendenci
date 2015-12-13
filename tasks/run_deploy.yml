@@ -1,35 +1,35 @@
 
 - name: Work around Tendenci bug 465 (South migrations component)
-  command: "mv {{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations/ {{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak
-    creates={{ virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak"
+  command: "mv {{ tendenci_virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations/ {{ tendenci_virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak
+    creates={{ tendenci_virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak"
 
 # The following entries (all of them) are the contents of deploy.py. They're
 # being run manually so we can use django_manage and its virtualenv support.
 - name: Run migrations
-  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
     command="migrate --noinput"
 
 - name: Collect static files
-  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
     command="collectstatic --noinput"
 
 - name:  Update settings
-  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
     command="update_settings"
 
 - name: Clear theme cache
-  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
     command="clear_theme_cache"
 
 - name: Populate default entity
-  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
     command="populate_default_entity"
 
 - name: Populate entity and auth group columns
-  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
     command="populate_entity_and_auth_group_columns"
 
 - name: Load initial data
-  django_manage: virtualenv="{{ virtualenv_install_dir }}"  app_path="{{ website_install_dir }}"
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
     command="loaddata initial_data.json"
 

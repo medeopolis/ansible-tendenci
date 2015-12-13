@@ -1,6 +1,6 @@
 
 # How about this from http://source.mihelac.org/2009/10/23/django-avoiding-typing-password-for-superuser/#comment-2269267402
 - name: Create site superuser 
-  shell: echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('{{ superuser_username }}', '{{ superuser_email }}', '{{ superuser_password }}') " | {{ virtualenv_install_dir }}/bin/python {{ website_install_dir }}/manage.py shell; echo "{{ superuser_username }}, {{ superuser_email }}" > {{ website_install_dir }}/.created_django_superuser
-    creates={{ website_install_dir }}/.created_superuser_{{ superuser_username}}
+  shell: echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('{{ tendenci_site_administrator_username }}', '{{ tendenci_site_administrator_email }}', '{{ tendenci_site_administrator_password }}') " | {{ tendenci_virtualenv_install_dir }}/bin/python {{ tendenci_website_install_dir }}/manage.py shell; echo "{{ tendenci_site_administrator_username }}, {{ tendenci_site_administrator_email }}" > {{ tendenci_website_install_dir }}/.created_django_superuser
+    creates={{ tendenci_website_install_dir }}/.created_superuser_{{ tendenci_site_administrator_username}}
 

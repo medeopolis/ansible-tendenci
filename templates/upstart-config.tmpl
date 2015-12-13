@@ -1,4 +1,4 @@
-description "Start Tendenci instance \"{{ install_name }}\""
+description "Start Tendenci instance \"{{ tendenci_install_name }}\""
 setuid {{ tendenci_run_as_user }}
 setgid {{ tendenci_run_as_group }}
 start on runlevel [2345]
@@ -6,7 +6,7 @@ stop on runlevel [06]
 respawn
 respawn limit 10 5
 script
-    cd {{ website_install_dir }}
+    cd {{ tendenci_website_install_dir }}
     exec gunicorn -w 2 -b {{ tendenci_bind_address }}:{{ tendenci_bind_port }}} conf.wsgi --max-requests 350
 end script
 

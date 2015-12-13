@@ -4,7 +4,7 @@
   register: upstart_existance
 
 - name: Install Upstart configuration
-  template: src="upstart-config.tmpl" dest="/etc/init/{{ install_name }}}.conf"
+  template: src="upstart-config.tmpl" dest="/etc/init/{{ tendenci_install_name }}}.conf"
   when: upstart_existance.stat.exists
 
 
@@ -13,13 +13,13 @@
   register: systemd_existance
 
 - name: Install Systemd configuration
-  template: src="systemd-config.tmpl" dest="/etc/systemd/system/{{ install_name }}.service"
+  template: src="systemd-config.tmpl" dest="/etc/systemd/system/{{ tendenci_install_name }}.service"
   when: systemd_existance.stat.exists
 
 
 - name: Enable Tendenci service
-  service: name="{{ install_name }}" enabled=yes
+  service: name="{{ tendenci_install_name }}" enabled=yes
 
 - name: Start Tendenci service
-  service: name="{{ install_name }}" state=started
+  service: name="{{ tendenci_install_name }}" state=started
 

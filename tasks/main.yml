@@ -11,10 +11,10 @@
 - include: load_defaults.yml
 
 - include: custom_themes.yml
-  when: custom_theme_name != ''
+  when: tendenci_custom_theme_name != ''
 
 - include: configure_init_systems.yml
 
 - include: configure_nginx.yml
-  when: perform_nginx_configuration
+  when: tendenci_perform_nginx_configuration
 

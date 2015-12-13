@@ -4,47 +4,47 @@
 # Tendenci roles at the top, third party below.
 ######################################################
 # Name of this tendenci install
-install_name: "tendenci"
+tendenci_install_name: "tendenci"
 # These paths use it for cooinstallability but you can choose different paths.
-virtualenv_install_dir: "/srv/{{ install_name }}/environment"
-website_install_dir: "/srv/{{ install_name }}/website"
+tendenci_virtualenv_install_dir: "/srv/{{ tendenci_install_name }}/environment"
+tendenci_website_install_dir: "/srv/{{ tendenci_install_name }}/website"
 
-postgres_connection_user: "{{ install_name }}_user"
+postgres_connection_user: "{{ tendenci_install_name }}_user"
 # Password will be encrypted by postgresql during user creation
-postgres_connection_pass: "Good strong password.... dont forget."
-postgres_database_name:   "{{ install_name }}_db"
+tendenci_postgres_connection_pass: "Good strong password.... dont forget."
+tendenci_postgres_database_name:   "{{ tendenci_install_name }}_db"
 
 # Use upstream defaults, people should override it themselves
-site_secret_key: "your_unique_secret_key_Qoh222VG9pq8P9hOapH"
-site_settings_key: "tendenci_site_key_bdc635k2-283d-4a2c-a477-339ea866"
+tendenci_site_secret_key: "your_unique_secret_key_Qoh222VG9pq8P9hOapH"
+tendenci_site_settings_key: "tendenci_site_key_bdc635k2-283d-4a2c-a477-339ea866"
 
-superuser_username: "admin"
-superuser_email: "admin@example.com"
+tendenci_site_administrator_username: "admin"
+tendenci_site_administrator_email: "admin@example.com"
 # As with keys, user should override.
-superuser_password: "admin"
+tendenci_site_administrator_password: "admin"
 
 # Set false to prevent all nginx configuration (eg for custom/external configuration)
-perform_nginx_configuration: true
+tendenci_perform_nginx_configuration: true
 # DNS name of server
-server_visible_name: localhost
-server_visible_port: 80
+tendenci_server_visible_name: localhost
+tendenci_server_visible_port: 80
 
 tendenci_bind_address: 127.0.0.1
 tendenci_bind_port: 8080
 
-custom_theme_name: ""
+tendenci_custom_theme_name: ""
 
 # Pre populate the site with data (eg for demo purposes)
-load_base_defaults: false
-load_npo_defaults: false
+tendenci_load_base_defaults: false
+tendenci_load_npo_defaults: false
 
-enable_mailserver: false
+tendenci_enable_mailserver: false
 
 tendenci_run_as_user: www-data
 tendenci_run_as_group: www-data
 
 # Only enable if running an enforcing system. 
-configure_selinux: false
+tendenci_configure_selinux: false
 ######################################################
 
 
@@ -94,19 +94,19 @@ postgresql_ext_install_postgis: true
 
 # List of databases to be created
 postgresql_databases:
-  - name: "{{ postgres_database_name }}"
+  - name: "{{ tendenci_postgres_database_name }}"
     owner: "{{ postgres_connection_user }}"
 
 # List of users to be created
 postgresql_users:
   - name: "{{ postgres_connection_user }}"
-    pass: "{{ postgres_connection_pass }}"
+    pass: "{{ tendenci_postgres_connection_pass }}"
     encrypted: no       # denotes if the password is already encrypted.
 
 # List of user privileges to be applied
 postgresql_user_privileges:
   - name: "{{ postgres_connection_user }}"
-    db: "{{ postgres_database_name }}"
+    db: "{{ tendenci_postgres_database_name }}"
     priv: "ALL"
     role_attr_flags: "CREATEDB"
 

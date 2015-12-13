@@ -1,25 +1,25 @@
 
 - name: Install Django
-  pip: state=present virtualenv={{ virtualenv_install_dir }}
+  pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}
     name=Django version="1.8.6" # version=">=1.8,<1.9"
 
 - name: Create directory for website
-  file: state=directory path="{{ website_install_dir }}"
+  file: state=directory path="{{ tendenci_website_install_dir }}"
 
 # Trying this http://stackoverflow.com/a/22188606; may have to go the wrapper method if it fails
 # http://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/ confirms behaviour
 - name: Create base website
-  command: "{{ virtualenv_install_dir }}/bin/django-admin.py startproject --template=https://github.com/tendenci/tendenci-project-template/archive/master.zip {{ install_name }} {{ website_install_dir }}
-    creates={{ website_install_dir }}/manage.py"
+  command: "{{ tendenci_virtualenv_install_dir }}/bin/django-admin.py startproject --template=https://github.com/tendenci/tendenci-project-template/archive/master.zip {{ tendenci_install_name }} {{ tendenci_website_install_dir }}
+    creates={{ tendenci_website_install_dir }}/manage.py"
 
 - name: Install Tendenci dependencies
-  pip: state=present virtualenv={{ virtualenv_install_dir }}
-    requirements={{ website_install_dir }}/requirements/dev.txt
+  pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}
+    requirements={{ tendenci_website_install_dir }}/requirements/dev.txt
 
 - name: Downgrade django-celery to work around Tendenci bug 465
-  pip: state=present virtualenv={{ virtualenv_install_dir }}
+  pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}
     name=django-celery version="3.1.16"
 
 - name: Changing website to be Read/Write by {{ tendenci_run_as_user }} and {{ tendenci_run_as_group }}
-  file: owner={{ tendenci_run_as_user }} group={{ tendenci_run_as_group }} path={{ website_install_dir }} recurse=yes
+  file: owner={{ tendenci_run_as_user }} group={{ tendenci_run_as_group }} path={{ tendenci_website_install_dir }} recurse=yes
 

@@ -14,12 +14,12 @@ Role Variables
 
 A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
-`install_name must not contain spaces as its used in various places for configuration and in filesystem paths.
+`tendenci_install_name must not contain spaces as its used in various places for configuration and in filesystem paths.
 
 
 Other Configuration
 -------------------
-To push out an updated admin password remove the file at {{ website_install_dir }}/.created_superuser_{{ superuser_username }} . While the file exists that users password will remain unchanged by ansible.
+To push out an updated admin password remove the file at {{ tendenci_website_install_dir }}/.created_superuser_{{ tendenci_site_administrator_username }} . While the file exists that users password will remain unchanged by ansible.
 
 Dependencies
 ------------
@@ -59,9 +59,9 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
         - role: goetzk.tendenci
       vars:
-        - install_name: 'goetzk_tendenci'
-        - site_secret_key: 'my 32 character string here asdf234'
-        - site_settings_key: 'my 32 character string here asdf234'
+        - tendenci_install_name: 'goetzk_tendenci'
+        - tendenci_site_secret_key: 'my 32 character string here asdf234'
+        - tendenci_site_settings_key: 'my 32 character string here asdf234'
 
 License
 -------

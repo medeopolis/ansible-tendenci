@@ -1,11 +1,11 @@
 server {
-    listen {{ server_visible_port }};
-    server_name ~^(www\.)?{{ server_visible_name }}$;
+    listen {{ tendenci_server_visible_port }};
+    server_name ~^(www\.)?{{ tendenci_server_visible_name }}$;
 
     charset   utf-8;
     keepalive_timeout  65;
     client_max_body_size  30M;
-    root {{ website_install_dir }};
+    root {{ tendenci_website_install_dir }};
 
     location /static/ {
         access_log off;

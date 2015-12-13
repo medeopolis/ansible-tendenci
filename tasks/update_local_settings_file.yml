@@ -1,21 +1,21 @@
 
 - name: Set DB connection user in settings
-  replace: name="{{ website_install_dir }}/conf/local_settings.py"
+  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
     regexp="'<DB_USER>'" replace="'{{ postgres_connection_user }}'"
 
 - name: Set DB connection pass in settings
-  replace: name="{{ website_install_dir }}/conf/local_settings.py"
-    regexp="'<DB_PASS>'" replace="'{{ postgres_connection_pass }}'"
+  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
+    regexp="'<DB_PASS>'" replace="'{{ tendenci_postgres_connection_pass }}'"
 
 - name: Set DB name in settings
-  replace: name="{{ website_install_dir }}/conf/local_settings.py"
-    regexp="'<DB_NAME>'" replace="'{{ postgres_database_name }}'"
+  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
+    regexp="'<DB_NAME>'" replace="'{{ tendenci_postgres_database_name }}'"
 
 - name: Set Secret key
-  replace: name="{{ website_install_dir }}/conf/local_settings.py"
-    regexp="SECRET_KEY=.*" replace="SECRET_KEY='{{ site_secret_key }}'"
+  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
+    regexp="SECRET_KEY=.*" replace="SECRET_KEY='{{ tendenci_site_secret_key }}'"
 
 - name: Set Site settings key
-  replace: name="{{ website_install_dir }}/conf/local_settings.py"
-    regexp="SITE_SETTINGS_KEY=.*" replace="SITE_SETTINGS_KEY='{{ site_settings_key }}'"
+  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
+    regexp="SITE_SETTINGS_KEY=.*" replace="SITE_SETTINGS_KEY='{{ tendenci_site_settings_key }}'"
 

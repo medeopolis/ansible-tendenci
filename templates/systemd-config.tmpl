@@ -1,24 +1,24 @@
 [Unit]
-Description=Start Tendenci instance "{{ install_name }}"
+Description=Start Tendenci instance "{{ tendenci_install_name }}"
 Requires=nginx.service postgresql.service
 Wants=memcached.service
 Before=nginx.service
 After=postgresql.service
 
 [Service]
-WorkingDirectory={{ website_install_dir }}
-PIDFile=/run/{{ install_name }}.pid
+WorkingDirectory={{ tendenci_website_install_dir }}
+PIDFile=/run/{{ tendenci_install_name }}.pid
 Type=forking
 KillMode=process
 Restart=restart-always
-ExecStart={{ virtualenv_install_dir }}/bin/gunicorn              \
+ExecStart={{ tendenci_virtualenv_install_dir }}/bin/gunicorn              \
           --group {{ tendenci_run_as_group }}                             \
           --user {{ tendenci_run_as_user }}                              \
           --workers 4                                  \
           --bind={{ tendenci_bind_address }}:{{ tendenci_bind_port }}                        \
-          --pid=/run/{{ install_name }}.pid                \
-          --pythonpath={{ website_install_dir }}         \
-          --error-logfile=/var/log/{{ install_name }}.error \
+          --pid=/run/{{ tendenci_install_name }}.pid                \
+          --pythonpath={{ tendenci_website_install_dir }}         \
+          --error-logfile=/var/log/{{ tendenci_install_name }}.error \
           --daemon                                     \
          conf.wsgi 
 
