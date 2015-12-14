@@ -56,7 +56,6 @@ For safety sake ensure`tendenci_install_name does not contain spaces. It is used
 
 The full ist of variables is extensive and includes a number from the third party roles this package depends on - see the dependencies section for variables handled by those roles.
 
-:: 
     # Name of this tendenci install, used in filesystem paths and postgresql table names
     tendenci_install_name: "tendenci"
     # For example these paths use it for cooinstallability but you can choose different paths.
@@ -113,14 +112,12 @@ franklinkim.apt
 ===============
 This is used to install packages and will need to be used. The default package set is listed below.
 
-::
-    
     apt_packages:
      - git
      - python-dev           # for pip to build compiled modules against
      - libjpeg-dev          # for image manipulation
      - python-pip           # manage install process for python modules
-     - python-virtualenv    # create virtual environment for python packages to be installed in
+     - virtualenv           # create virtual environment for python packages to be installed in
      - build-essential      # provide packages needed for compilation (used by pip)
      - libmemcached-dev     # enable linking against memcache for pip
      - nginx                # front end web server
@@ -130,16 +127,12 @@ bennojoy.memcached
 ===================
 Installs and configures memcached. This could be done manually so can be regarded as optional if unavailable.
 
-::
-
     memcached_cache_size: 256       # The cache size in MB
     memcached_listen_address: 127.0.0.1 # IP to listen on
 
 ANXS.postgresql
 ===============
 Used to perform all database configuration; this role is required.
-
-::
 
     postgresql_version: 9.4
     postgresql_encoding: 'UTF-8'

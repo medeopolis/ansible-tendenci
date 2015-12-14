@@ -57,7 +57,7 @@ apt_packages:
  - libjpeg-dev          # for image manipulation
  # - git                  # use currently unknown but upstream recommend it
  - python-pip           # manage install process for python modules
- - python-virtualenv    # create virtual environment for python packages to be installed in
+ - virtualenv           # create virtual environment for python packages to be installed in
  - build-essential      # provide packages needed for compilation (used by pip)
  - libmemcached-dev     # enable linking against memcache for pip
  - nginx                # front end web server
