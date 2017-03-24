@@ -124,7 +124,7 @@ galaxy_info:
   - web
 dependencies: 
   # List your role dependencies here, one per line.
-  - franklinkim.apt
+  - weareinteractive.apt
   - bennojoy.memcached
   - ANXS.postgresql
 
