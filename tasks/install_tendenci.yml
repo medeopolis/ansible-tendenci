@@ -20,6 +20,12 @@
   pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}
     requirements={{ tendenci_website_install_dir }}/requirements/dev.txt
 
+# Load default theme
+- name: Install default theme
+  copy:
+    remote_src: true
+    src: "{{ tendenci_virtualenv_install_dir }}/lib/python3.6/site-packages/tendenci/themes/t7-tendenci2018/"
+    dest: "{{ tendenci_website_install_dir }}/themes/tendenci2018"
 
 # manage.py needs to be executable for django_manage to use it.
 - name: Make manage.py exeutable
