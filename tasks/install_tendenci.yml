@@ -4,17 +4,14 @@
     virtualenv_python='python3'
     name="{{ tendenci_django_version }}"
 
-- name: Create directory for website
-  file: state=directory path="{{ tendenci_website_install_dir }}"
-
 - name: Create directory for logs
   file: state=directory path="{{ tendenci_website_log_dir }}" owner={{ tendenci_run_as_user }} group={{ tendenci_run_as_group }}
 
-# Trying this http://stackoverflow.com/a/22188606; may have to go the wrapper method if it fails
-# http://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/ confirms behaviour
-- name: Create base website
-  command: "{{ tendenci_virtualenv_install_dir }}/bin/django-admin.py startproject --template=https://github.com/tendenci/tendenci-project-template/archive/master.zip {{ tendenci_install_name }} {{ tendenci_website_install_dir }}
-    creates={{ tendenci_website_install_dir }}/manage.py"
+- name: Create base website from template
+  git:
+    repo: "{{ tendenci_project_template }}"
+    dest: "{{ tendenci_website_install_dir }}"
+    update: no
 
 - name: Install Tendenci dependencies
   pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}

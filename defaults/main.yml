@@ -13,6 +13,9 @@ tendenci_website_log_dir: "/srv/{{ tendenci_install_name }}/logs"
 # Django version
 tendenci_django_version: "Django>=1.11,<2.0"
 
+# Tendenci base project
+tendenci_project_template: 'https://github.com/tendenci/tendenci-project-template.git'
+
 # Password will be encrypted by postgresql during user creation
 tendenci_postgres_connection_user: "tendenci"
 tendenci_postgres_connection_pass: "Good strong password.... dont forget."
