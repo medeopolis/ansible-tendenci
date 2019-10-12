@@ -16,10 +16,6 @@
   pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}
     requirements={{ tendenci_website_install_dir }}/requirements/dev.txt
 
-- name: Downgrade django-celery to work around Tendenci bug 465
-  pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}
-    name=django-celery version="3.1.16"
-
 - name: Changing website to be Read/Write by {{ tendenci_run_as_user }} and {{ tendenci_run_as_group }}
   file: owner={{ tendenci_run_as_user }} group={{ tendenci_run_as_group }} path={{ tendenci_website_install_dir }} recurse=yes
 

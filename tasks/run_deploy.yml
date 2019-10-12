@@ -1,8 +1,4 @@
 
-- name: Work around Tendenci bug 465 (South migrations component)
-  command: "mv {{ tendenci_virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations/ {{ tendenci_virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak
-    creates={{ tendenci_virtualenv_install_dir }}/lib/python2.7/site-packages/djcelery/migrations.bak"
-
 # The following entries (all of them) are the contents of deploy.py. They're
 # being run manually so we can use django_manage and its virtualenv support.
 - name: Run migrations
