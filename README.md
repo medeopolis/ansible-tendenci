@@ -91,10 +91,6 @@ The full ist of variables is extensive and includes a number from the third part
     # If you have a custom theme, put its name here
     tendenci_custom_theme_name: ""
 
-    # Pre populate the site with data (eg for demo purposes)
-    tendenci_load_base_defaults: false
-    tendenci_load_npo_defaults: false
-
     # User and group for the daemons to run as
     tendenci_run_as_user: www-data
     tendenci_run_as_group: www-data
