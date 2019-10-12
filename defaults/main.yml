@@ -23,8 +23,6 @@ tendenci_site_administrator_email: "admin@example.com"
 # As with keys, user should override.
 tendenci_site_administrator_password: "admin"
 
-# Set false to prevent all nginx configuration (eg for custom/external configuration)
-tendenci_perform_nginx_configuration: true
 # DNS name of server
 tendenci_server_visible_name: localhost
 tendenci_server_visible_port: 80
@@ -44,68 +42,6 @@ tendenci_load_npo_defaults: false
 # User and group for the daemons to run as
 tendenci_run_as_user: www-data
 tendenci_run_as_group: www-data
-
-######################################################
-
-
-# Defaults for external roles appear here
-######################################################
-# For franklinkim.apt
-apt_packages:
- - git
- - python-dev           # for pip to build compiled modules against
- - libjpeg-dev          # for image manipulation
- # - git                  # use currently unknown but upstream recommend it
- - python-pip           # manage install process for python modules
- - virtualenv           # create virtual environment for python packages to be installed in
- - build-essential      # provide packages needed for compilation (used by pip)
- - libmemcached-dev     # enable linking against memcache for pip
- - nginx                # front end web server
- - sudo                 # Needed by ANX.postgresql.
-
-# For bennojoy.memcached
-# pulls in memcache and python-selinux packages
-memcached_cache_size: 256       # The cache size in MB
-memcached_listen_address: 127.0.0.1 # IP to listen on
-
-# For ANXS.postgresql
-# pulls in python-psycopg2, python-pycurl,locales, libgeos-c1 and postgres packages
-# installs packages from postgres.org which may or may not be desirable. can
-# probably fudge it back to debian repos.
-postgresql_version: 9.4
-postgresql_encoding: 'UTF-8'
-postgresql_locale: 'en_AU.UTF-8'
-
-postgresql_admin_user: "postgres"
-postgresql_default_auth_method: "trust"
-
-# Who will the new DBs use to authenticate to postgresql as?
-postgres_connection_user: "{{ tendenci_install_name }}_user"
-
-# Install contrib
-postgresql_ext_install_contrib: true
-# Install development headers
-postgresql_ext_install_dev_headers: true
-# Install postgis
-postgresql_ext_install_postgis: true
-
-# List of databases to be created
-postgresql_databases:
-  - name: "{{ tendenci_postgres_database_name }}"
-    owner: "{{ postgres_connection_user }}"
-
-# List of users to be created
-postgresql_users:
-  - name: "{{ postgres_connection_user }}"
-    pass: "{{ tendenci_postgres_connection_pass }}"
-    encrypted: no       # denotes if the password is already encrypted.
-
-# List of user privileges to be applied
-postgresql_user_privileges:
-  - name: "{{ postgres_connection_user }}"
-    db: "{{ tendenci_postgres_database_name }}"
-    priv: "ALL"
-    role_attr_flags: "CREATEDB"
 
 ######################################################
 

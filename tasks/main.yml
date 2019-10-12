@@ -1,9 +1,6 @@
 ---
 # tasks file for tendenci
 
-# new postgres role by ANXS doesn't seem to allow arbitrary extensions yet.
-- include: configure_postgres_extensions.yml
-
 - include: install_tendenci.yml
 - include: update_local_settings_file.yml
 - include: run_deploy.yml
@@ -14,7 +11,4 @@
   when: tendenci_custom_theme_name != ''
 
 - include: configure_init_systems.yml
-
-- include: configure_nginx.yml
-  when: tendenci_perform_nginx_configuration
 

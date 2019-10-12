@@ -1,6 +1,3 @@
 ---
 # handlers file for tendenci
 
-- name: Reload Nginx
-  service: name=nginx state=reloaded
-
