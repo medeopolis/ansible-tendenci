@@ -75,12 +75,6 @@ memcached_listen_address: 127.0.0.1 # IP to listen on
 postgresql_version: 9.4
 postgresql_encoding: 'UTF-8'
 postgresql_locale: 'en_AU.UTF-8'
-# These lc_* need to be set too, bug filed upstream
-# https://github.com/ANXS/postgresql/issues/110 and ANXS/postgresql/issues/112
-postgresql_lc_messages: 'en_AU.UTF-8'
-postgresql_lc_monetary: 'en_AU.UTF-8'
-postgresql_lc_numeric: 'en_AU.UTF-8'
-postgresql_lc_time: 'en_AU.UTF-8'
 
 postgresql_admin_user: "postgres"
 postgresql_default_auth_method: "trust"
