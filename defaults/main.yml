@@ -8,16 +8,20 @@ tendenci_install_name: "tendenci"
 # For example these paths use it for cooinstallability but you can choose different paths.
 tendenci_virtualenv_install_dir: "/srv/{{ tendenci_install_name }}/environment"
 tendenci_website_install_dir: "/srv/{{ tendenci_install_name }}/website"
+tendenci_website_log_dir: "/srv/{{ tendenci_install_name }}/logs"
+
 # Django version
 tendenci_django_version: "Django>=1.11,<2.0"
 
 # Password will be encrypted by postgresql during user creation
+tendenci_postgres_connection_user: "tendenci"
 tendenci_postgres_connection_pass: "Good strong password.... dont forget."
 tendenci_postgres_database_name:   "{{ tendenci_install_name }}_db"
 
 # These are upstream default values, make sure you change them!
-tendenci_site_secret_key: "your_unique_secret_key_Qoh222VG9pq8P9hOapH"
-tendenci_site_settings_key: "tendenci_site_key_bdc635k2-283d-4a2c-a477-339ea866"
+# Tendenci recommend that these be > 50 characters
+tendenci_site_secret_key: "your_unique_secret_key_goes_goes_in_here_Qoh222VG9pq8P9hOapH"
+tendenci_site_settings_key: "tendenci_site_key_in_this_spot_bdc635k2-283d-4a2c-a477-339ea866"
 
 # Details of the first administrator/superuser account
 tendenci_site_administrator_username: "admin"
@@ -32,7 +36,7 @@ tendenci_server_visible_port: 80
 # Where django will bind to, note that this is an internal address and
 # users see the _server_visible_* values above.
 tendenci_bind_address: 127.0.0.1
-tendenci_bind_port: 8080
+tendenci_bind_port: 8000
 
 # If you have a custom theme, put its name here
 tendenci_custom_theme_name: ""

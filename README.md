@@ -86,7 +86,7 @@ The full ist of variables is extensive and includes a number from the third part
     # Where django will bind to, note that this is an internal address and
     # users see the _server_visible_* values above.
     tendenci_bind_address: 127.0.0.1
-    tendenci_bind_port: 8080
+    tendenci_bind_port: 8000
 
     # If you have a custom theme, put its name here
     tendenci_custom_theme_name: ""

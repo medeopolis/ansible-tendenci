@@ -1,21 +1,35 @@
 
 - name: Set DB connection user in settings
-  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
-    regexp="'<DB_USER>'" replace="'{{ postgres_connection_user }}'"
+  lineinfile:
+    path: "{{ tendenci_website_install_dir }}/conf/settings.py"
+    regexp: '^DATABASES.*USER'
+    line: "DATABASES['default']['USER'] = '{{ tendenci_postgres_connection_user }}'"
 
-- name: Set DB connection pass in settings
-  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
-    regexp="'<DB_PASS>'" replace="'{{ tendenci_postgres_connection_pass }}'"
+- name: Set DB connection password in settings
+  lineinfile:
+    path: "{{ tendenci_website_install_dir }}/conf/settings.py"
+    regexp: '^DATABASES.*PASSWORD'
+    line: "DATABASES['default']['PASSWORD'] = '{{ tendenci_postgres_connection_pass }}'"
 
 - name: Set DB name in settings
-  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
-    regexp="'<DB_NAME>'" replace="'{{ tendenci_postgres_database_name }}'"
+  lineinfile:
+    path: "{{ tendenci_website_install_dir }}/conf/settings.py"
+    regexp: '^DATABASES.*NAME'
+    line: "DATABASES['default']['NAME'] = '{{ tendenci_postgres_database_name }}'"
 
 - name: Set Secret key
-  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
-    regexp="SECRET_KEY=.*" replace="SECRET_KEY='{{ tendenci_site_secret_key }}'"
+  lineinfile:
+    path: "{{ tendenci_website_install_dir }}/conf/settings.py"
+    regexp: "^SECRET_KEY='.+'"
+    line: "SECRET_KEY='{{ tendenci_site_secret_key }}'"
 
 - name: Set Site settings key
-  replace: name="{{ tendenci_website_install_dir }}/conf/local_settings.py"
-    regexp="SITE_SETTINGS_KEY=.*" replace="SITE_SETTINGS_KEY='{{ tendenci_site_settings_key }}'"
+  lineinfile:
+    path: "{{ tendenci_website_install_dir }}/conf/settings.py"
+    regexp: "^SITE_SETTINGS_KEY='.+'"
+    line: "SITE_SETTINGS_KEY='{{ tendenci_site_settings_key }}'"
+
+- name: Change log folder
+  replace: name="{{ tendenci_website_install_dir }}/conf/settings.py"
+    regexp="/var/log/mysite/" replace="{{ tendenci_website_log_dir }}/"
 
