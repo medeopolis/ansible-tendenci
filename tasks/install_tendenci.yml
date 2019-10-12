@@ -15,7 +15,7 @@
 
 - name: Install Tendenci dependencies
   pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}
-    requirements={{ tendenci_website_install_dir }}/requirements/dev.txt
+    requirements={{ tendenci_website_install_dir }}/requirements/prod.txt
     extra_args="--upgrade --no-binary psycopg2"
 
 # Load default theme
