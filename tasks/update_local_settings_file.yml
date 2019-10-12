@@ -33,3 +33,15 @@
   replace: name="{{ tendenci_website_install_dir }}/conf/settings.py"
     regexp="/var/log/mysite/" replace="{{ tendenci_website_log_dir }}/"
 
+- name: Set Timezone
+  lineinfile:
+    path: "{{ tendenci_website_install_dir }}/conf/settings.py"
+    regexp: "^TIME_ZONE='.+'"
+    line: "TIME_ZONE='{{ tendenci_time_zone }}'"
+
+- name: Set allowed hosts
+  lineinfile:
+    path: "{{ tendenci_website_install_dir }}/conf/settings.py"
+    regexp: "^ALLOWED_HOSTS='.+'"
+    line: "ALLOWED_HOSTS = {{ tendenci_allowed_hosts }}"
+

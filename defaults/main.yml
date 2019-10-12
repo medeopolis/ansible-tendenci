@@ -45,5 +45,13 @@ tendenci_custom_theme_name: ""
 tendenci_run_as_user: www-data
 tendenci_run_as_group: www-data
 
+# Time for clock
+tendenci_time_zone: 'Australia/Hobart'
+
+# Python list of hosts allowed access.
+# In a test environment this can be an external hostname; once properly
+# deployed it should be localhost
+tendenci_allowed_hosts: "['127.0.0.1']"
+
 ######################################################
 
