@@ -16,6 +16,10 @@
   template: src="systemd-config.tmpl" dest="/etc/systemd/system/{{ tendenci_install_name }}.service"
   when: systemd_existance.stat.exists
 
+- name: Reload systemd in case the service is updated.
+  command: systemctl daemon-reload
+  when: systemd_existance.stat.exists
+
 
 - name: Enable Tendenci service
   service: name="{{ tendenci_install_name }}" enabled=yes

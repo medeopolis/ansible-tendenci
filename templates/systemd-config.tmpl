@@ -1,4 +1,8 @@
 [Unit]
+#Requires=nginx.service postgresql.service
+#Wants=memcached.service
+#Before=nginx.service
+#After=postgresql.service
 Description=Start Tendenci instance "{{ tendenci_install_name }}"
 Requires=nginx.service postgresql.service
 Wants=memcached.service
@@ -18,9 +22,11 @@ ExecStart={{ tendenci_virtualenv_install_dir }}/bin/gunicorn              \
           --bind={{ tendenci_bind_address }}:{{ tendenci_bind_port }}                        \
           --pid=/run/{{ tendenci_install_name }}.pid                \
           --pythonpath={{ tendenci_website_install_dir }}         \
-          --error-logfile=/var/log/{{ tendenci_install_name }}.error \
+          --access-logfile="{{ tendenci_website_log_dir }}/{{ tendenci_install_name }}.access.log" \
+          --error-logfile="{{ tendenci_website_log_dir }}/{{ tendenci_install_name }}.error.log" \
+          --capture-output                              \
           --daemon                                     \
-         conf.wsgi 
+         conf.wsgi
 
 [Install]
 WantedBy=multi-user.target
