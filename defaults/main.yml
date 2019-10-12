@@ -8,6 +8,8 @@ tendenci_install_name: "tendenci"
 # For example these paths use it for cooinstallability but you can choose different paths.
 tendenci_virtualenv_install_dir: "/srv/{{ tendenci_install_name }}/environment"
 tendenci_website_install_dir: "/srv/{{ tendenci_install_name }}/website"
+# Django version
+tendenci_django_version: "Django>=1.11,<2.0"
 
 # Password will be encrypted by postgresql during user creation
 tendenci_postgres_connection_pass: "Good strong password.... dont forget."

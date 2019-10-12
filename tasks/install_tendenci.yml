@@ -1,7 +1,8 @@
 
 - name: Install Django
   pip: state=present virtualenv={{ tendenci_virtualenv_install_dir }}
-    name=Django version="1.8.6" # version=">=1.8,<1.9"
+    virtualenv_python='python3'
+    name="{{ tendenci_django_version }}"
 
 - name: Create directory for website
   file: state=directory path="{{ tendenci_website_install_dir }}"
