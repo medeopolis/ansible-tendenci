@@ -1,0 +1,19 @@
+# Adjust permissions on media directories
+- name: Set -x on media
+  file: path="{{ tendenci_website_install_dir }}/media" mode=755
+# - name: Set -x on collected
+#   file: path="{{ tendenci_website_install_dir }}/manage.py" mode=755
+
+- name: Changing website to be Read/Write by root:root
+  file: owner=root group=root path={{ tendenci_website_install_dir }} recurse=yes
+
+- name: Changing media directory properties
+  file: mode=755 owner={{ tendenci_run_as_user }} group={{ tendenci_run_as_group }} path={{ tendenci_website_install_dir }}/media recurse=yes
+
+- name: Changing static directory properties
+  file: mode=755 owner={{ tendenci_run_as_user }} group={{ tendenci_run_as_group }} path={{ tendenci_website_install_dir }}/static recurse=yes
+
+- name: Changing whoosh directory properties
+  file: mode=755 owner={{ tendenci_run_as_user }} group={{ tendenci_run_as_group }} path={{ tendenci_website_install_dir }}/whoosh_index recurse=yes
+
+

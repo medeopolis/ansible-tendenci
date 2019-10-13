@@ -1,0 +1,29 @@
+# manage.py needs to be executable for django_manage to use it.
+- name: Make manage.py exeutable
+  file: path="{{ tendenci_website_install_dir }}/manage.py"  mode=755
+
+- name: Initial migration
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
+    command="initial_migrate"
+
+- name: Run deploy
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
+    command="deploy"
+
+- name: Load theme defaults
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
+    command="load_tendenci2018_defaults"
+
+- name: Update dashboard stats
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
+    command="update_dashboard_stats"
+
+- name: Rebuild index
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
+    command="rebuild_index --noinput"
+
+- name: Set site URL
+  django_manage: virtualenv="{{ tendenci_virtualenv_install_dir }}"  app_path="{{ tendenci_website_install_dir }}"
+    command="set_setting site global siteurl {{ tendenci_server_visible_name }}"
+
+

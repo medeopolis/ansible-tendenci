@@ -3,6 +3,8 @@
 
 - include: install_tendenci.yml
 - include: update_local_settings_file.yml
+- include: perform_migrations.yml
+- include: security_fixes.yml
 - include: create_superuser.yml
 
 - include: custom_themes.yml
