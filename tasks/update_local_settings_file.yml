@@ -9,7 +9,7 @@
   lineinfile:
     path: "{{ tendenci_website_install_dir }}/conf/settings.py"
     regexp: '^DATABASES.*PASSWORD'
-    line: "DATABASES['default']['PASSWORD'] = '{{ tendenci_postgres_connection_pass }}'"
+    line: "DATABASES['default']['PASSWORD'] = '{{ tendenci_postgres_connection_pass |mandatory }}'"
 
 - name: Set DB name in settings
   lineinfile:
@@ -21,13 +21,13 @@
   lineinfile:
     path: "{{ tendenci_website_install_dir }}/conf/settings.py"
     regexp: "^SECRET_KEY='.+'"
-    line: "SECRET_KEY='{{ tendenci_site_secret_key }}'"
+    line: "SECRET_KEY='{{ tendenci_site_secret_key |default( lookup('password', '/dev/null' )) }}'"
 
 - name: Set Site settings key
   lineinfile:
     path: "{{ tendenci_website_install_dir }}/conf/settings.py"
     regexp: "^SITE_SETTINGS_KEY='.+'"
-    line: "SITE_SETTINGS_KEY='{{ tendenci_site_settings_key }}'"
+    line: "SITE_SETTINGS_KEY='{{ tendenci_site_settings_key |default(lookup('password', '/dev/null' )) }}'"
 
 - name: Change log folder
   replace: name="{{ tendenci_website_install_dir }}/conf/settings.py"

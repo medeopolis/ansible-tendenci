@@ -24,8 +24,6 @@ In this instance only the required settings are changed, all others remain at th
         - role: goetzk.tendenci
       vars:
         - tendenci_postgres_connection_pass: 'MyS3cur3P4ss'
-        - tendenci_site_secret_key: 'my 32 character string here 0982lkj'
-        - tendenci_site_settings_key: 'my 32 character string here ;lkj938'
         - tendenci_site_administrator_password: 'S0meth1ngS4f3'
         - tendenci_site_administrator_email: 'you@example.com'
         - tendenci_server_visible_name: '192.168.93.106'
