@@ -1,3 +1,6 @@
+This readme was provided when the role was stand alone. It will be
+removed/revised as the steps taken by the role are updated.
+
 Tendenci
 =========
 
