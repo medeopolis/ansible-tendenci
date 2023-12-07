@@ -1,0 +1,39 @@
+---
+
+- name: Pre setup tests
+  hosts: tendenci_ams_environment
+  tasks:
+    # Use existence of configuration files as a proxy check. Its not meant to
+    # be comprehensive, its meant to stop 'oh whoops' moments.
+    - name: Check if debops has been run against this server
+      stat:
+        path: "{{ item }}"
+      with_items:
+        - '/etc/ansible/debops_fact.ini'
+        - '/etc/ansible/debops_fact_priv.ini'
+      register: debops_file_status
+
+    - name: Check hostname is valid DNS name
+      set_fact:
+        instance_dns_ip: "{{ lookup('community.general.dig', inventory_hostname) }}"
+      when: "'debops_service_nginx' in group_names"
+
+    - name: Confirm resolved IP is in our inventory
+      assert:
+        that:
+          - instance_dns_ip in ansible_all_ipv4_addresses
+        fail_msg: "DNS lookup of {{ inventory_hostname }} does not point to an IP in our inventory."
+        success_msg: "DNS lookup of {{ inventory_hostname }} resolved to an IP in our inventory."
+      when:
+        - "'debops_service_nginx' in group_names"
+
+
+- name: Set up PostgreSQL server
+  ansible.builtin.import_playbook: debops.debops.service.postgresql_server
+
+- name: Set up Nginx
+  ansible.builtin.import_playbook: debops.debops.service.nginx
+
+- name: Set up Python
+  ansible.builtin.import_playbook: debops.debops.service.python
+
